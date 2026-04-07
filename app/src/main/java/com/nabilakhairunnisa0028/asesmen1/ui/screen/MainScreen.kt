@@ -56,7 +56,6 @@ import androidx.navigation.compose.rememberNavController
 import com.nabilakhairunnisa0028.asesmen1.R
 import com.nabilakhairunnisa0028.asesmen1.navigation.Screen
 import com.nabilakhairunnisa0028.asesmen1.ui.theme.Asesmen1Theme
-import kotlinx.serialization.internal.throwMissingFieldException
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
