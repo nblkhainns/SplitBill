@@ -26,6 +26,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -73,6 +74,10 @@ fun ScreenContent(modifier: Modifier = Modifier){
         stringResource(R.string.tip_10)
     )
     var tip by rememberSaveable { mutableStateOf(radioOptions[0]) }
+
+    var totalTip by rememberSaveable { mutableDoubleStateOf(0.0)}
+    var perorang by rememberSaveable { mutableDoubleStateOf(0.0) }
+    var totalPerorang by rememberSaveable { mutableDoubleStateOf(0.0) }
 
     Column(
         modifier = modifier.fillMaxSize()
@@ -138,11 +143,64 @@ fun ScreenContent(modifier: Modifier = Modifier){
             }
         }
         Button(
-            onClick = {},
+            onClick = {
+                totalTip = hitungTip(total.toDouble(), tip.replace("%","").toDouble()/100)
+                perorang = hitungPerorang(total.toDouble(), jumlah.toInt())
+                totalPerorang = hitungTotalPerorang(total.toDouble(), jumlah.toInt(), totalTip)
+            },
             modifier = Modifier.padding(top = 8.dp),
             contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
         ) {
             Text(text = stringResource(R.string.hitung))
+        }
+        if (totalPerorang != 0.0) {
+            HorizontalDivider(
+                modifier = Modifier.padding(vertical = 8.dp),
+                thickness = 1.dp
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = stringResource(R.string.tip_label) ,
+                    style = MaterialTheme.typography.titleLarge
+                )
+                Text(
+                    text = "Rp %.0f".format(totalTip),
+                    style = MaterialTheme.typography.titleLarge
+                )
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = stringResource(R.string.perorang_label),
+                    style = MaterialTheme.typography.titleLarge
+                )
+                Text(
+                    text = "Rp %.0f".format(perorang),
+                    style = MaterialTheme.typography.titleLarge
+                )
+            }
+            HorizontalDivider(
+                modifier = Modifier.padding(vertical = 8.dp),
+                thickness = 1.dp
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = stringResource(R.string.hasil_label),
+                    style = MaterialTheme.typography.titleLarge
+                )
+                Text(
+                    text = "Rp %.0f".format(totalPerorang),
+                    style = MaterialTheme.typography.titleLarge
+                )
+            }
         }
     }
 }
@@ -160,6 +218,16 @@ fun TipOption(label: String, isSelected: Boolean, modifier: Modifier){
             modifier = Modifier.padding(start = 8.dp)
         )
     }
+}
+
+private fun hitungTip(total: Double, tip: Double): Double {
+    return total * tip
+}
+private fun hitungPerorang(total: Double, jumlah: Int): Double {
+    return total / jumlah
+}
+private fun hitungTotalPerorang(total: Double, jumlah: Int, totalTip: Double): Double {
+    return (total + totalTip)/jumlah
 }
 
 @Preview(showBackground = true)

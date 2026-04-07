@@ -8,4 +8,7 @@
     <string name="tip_5">5%</string>
     <string name="tip_10">10%</string>
     <string name="hitung">Hitung</string>
+    <string name="tip_label">Tip:</string>
+    <string name="perorang_label">Perorang: </string>
+    <string name="hasil_label">Total/orang: </string>
 </resources>
