@@ -3,6 +3,7 @@ package com.nabilakhairunnisa0028.asesmen1.ui.screen
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -40,7 +42,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.ImeAction
@@ -52,6 +56,7 @@ import androidx.navigation.compose.rememberNavController
 import com.nabilakhairunnisa0028.asesmen1.R
 import com.nabilakhairunnisa0028.asesmen1.navigation.Screen
 import com.nabilakhairunnisa0028.asesmen1.ui.theme.Asesmen1Theme
+import kotlinx.serialization.internal.throwMissingFieldException
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -80,12 +85,15 @@ fun MainScreen(navController: NavController) {
             )
         }
     ) { innerPadding ->
-        ScreenContent(Modifier.padding(innerPadding))
+        ScreenContent( Modifier.padding(innerPadding))
     }
 }
 
 @Composable
 fun ScreenContent(modifier: Modifier = Modifier){
+
+    val gambar = R.drawable.bill
+
     var total by rememberSaveable { mutableStateOf("") }
     var totalError by rememberSaveable { mutableStateOf(false)  }
 
@@ -115,6 +123,16 @@ fun ScreenContent(modifier: Modifier = Modifier){
         Text(
             text = stringResource(id = R.string.app_intro),
             style = MaterialTheme.typography.bodyLarge,
+        )
+        Image(
+            painter = painterResource(id = gambar),
+            contentDescription = stringResource(R.string.deskripsi),
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.size(200.dp)
+        )
+        Text(
+            text = stringResource(R.string.deskripsi),
+            style = MaterialTheme.typography.bodyMedium,
         )
         OutlinedTextField(
             value = total,

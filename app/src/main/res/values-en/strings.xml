@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">SplitBill</string>
     <string name="app_intro">Easily calculate shared bills with friends.</string>
+    <string name="deskripsi">Calculator and Bill</string>
     <string name="total_tagihan">Total Bill</string>
     <string name="jumlah_orang">Number of People</string>
     <string name="tip_title">Tip Percentage</string>
