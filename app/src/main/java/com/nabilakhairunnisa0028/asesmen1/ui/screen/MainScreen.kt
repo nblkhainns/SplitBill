@@ -99,7 +99,7 @@ fun ScreenContent(modifier: Modifier = Modifier){
             value = total,
             onValueChange = { total = it },
             label = {Text(text = stringResource(R.string.total_tagihan))},
-            leadingIcon = { Text(text = "Rp") },
+            leadingIcon = { IconPicker(totalError, "Rp") },
             supportingText = { ErrorHint(totalError) },
             isError = totalError,
             singleLine = true,

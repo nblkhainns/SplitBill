@@ -12,4 +12,7 @@
     <string name="perorang_label">Perorang: </string>
     <string name="hasil_label">Total/orang: </string>
     <string name="input_invalid">Tidak boleh kosong.</string>
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="copyright">SplitMate adalah aplikasi Android yang memudahkan kamu menghitung pembagian tagihan bersama teman dengan cepat dan praktis.\n\n Cocok untuk makan bersama, piknik, atau kegiatan yang membutuhkan patungan.\n\nCopyright © 2024–2026 Nabila Khairunnisa.\nAll rights reserved</string>
+
 </resources>
