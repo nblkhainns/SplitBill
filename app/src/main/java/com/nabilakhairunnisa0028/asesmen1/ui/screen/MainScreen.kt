@@ -14,9 +14,12 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
@@ -65,8 +68,10 @@ fun MainScreen() {
 @Composable
 fun ScreenContent(modifier: Modifier = Modifier){
     var total by rememberSaveable { mutableStateOf("") }
+    var totalError by rememberSaveable { mutableStateOf(false)  }
 
     var jumlah by rememberSaveable { mutableStateOf("") }
+    var jumlahError by rememberSaveable { mutableStateOf(false)  }
 
     val radioOptions = listOf(
         stringResource(R.string.tip_0),
@@ -95,6 +100,8 @@ fun ScreenContent(modifier: Modifier = Modifier){
             onValueChange = { total = it },
             label = {Text(text = stringResource(R.string.total_tagihan))},
             leadingIcon = { Text(text = "Rp") },
+            supportingText = { ErrorHint(totalError) },
+            isError = totalError,
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
@@ -106,7 +113,8 @@ fun ScreenContent(modifier: Modifier = Modifier){
             value = jumlah,
             onValueChange = { jumlah = it },
             label = {Text(text = stringResource(R.string.jumlah_orang))},
-            trailingIcon = { Text(text = "org")},
+            supportingText = { ErrorHint(jumlahError) },
+            isError = jumlahError,
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
@@ -144,6 +152,10 @@ fun ScreenContent(modifier: Modifier = Modifier){
         }
         Button(
             onClick = {
+                totalError = (total == "" || total == "0")
+                jumlahError = (jumlah == "" || jumlah == "0")
+                if (totalError || jumlahError) return@Button
+
                 totalTip = hitungTip(total.toDouble(), tip.replace("%","").toDouble()/100)
                 perorang = hitungPerorang(total.toDouble(), jumlah.toInt())
                 totalPerorang = hitungTotalPerorang(total.toDouble(), jumlah.toInt(), totalTip)
@@ -220,6 +232,21 @@ fun TipOption(label: String, isSelected: Boolean, modifier: Modifier){
     }
 }
 
+@Composable
+fun IconPicker(isError: Boolean, unit: String) {
+    if (isError){
+        Icon(imageVector = Icons.Filled.Warning, contentDescription = null)
+    } else {
+        Text(text = unit)
+    }
+}
+
+@Composable
+fun ErrorHint(isError: Boolean){
+    if (isError) {
+        Text(text = stringResource(R.string.input_invalid))
+    }
+}
 private fun hitungTip(total: Double, tip: Double): Double {
     return total * tip
 }
