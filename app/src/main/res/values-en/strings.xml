@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SplitBill</string>
+    <string name="app_intro">Easily calculate shared bills with friends.</string>
+    <string name="total_tagihan">Total Bill</string>
+    <string name="jumlah_orang">Number of People</string>
+    <string name="tip_title">Tip Percentage</string>
+    <string name="tip_0">0%</string>
+    <string name="tip_5">5%</string>
+    <string name="tip_10">10%</string>
+    <string name="hitung">Calculate</string>
+    <string name="tip_label">Tip:</string>
+    <string name="perorang_label">"Per Person: "</string>
+    <string name="hasil_label">"Total per Person: "</string>
+    <string name="input_invalid">Cannot be empty.</string>
+    <string name="tentang_aplikasi">About the App</string>
+    <string name="copyright">SplitBill is an Android app that helps you quickly and easily calculate shared bills with friends.\n\nPerfect for dining together, picnics, or any activity that requires pooling money.\n\nCopyright © 2024–2026 Nabila Khairunnisa.\nAll rights reserved</string>
+    <string name="kembali">Back</string>
+    <string name="bagikan">Share</string>
+    <string name="bagikan_template">Total Bill: Rp %1$s\nNumber of People: %2$s\nTip Percentage: %3$s\n\nTip: Rp %4$.2f\nPer Person: Rp %5$.2f\n\nTotal per Person: Rp %6$.2f</string>
+</resources>
